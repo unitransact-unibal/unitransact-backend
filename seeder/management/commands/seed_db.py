@@ -1,10 +1,10 @@
 from django.core.management.base import BaseCommand
-from students.seeder import seed
+from students.seeder import seed as seed_students
 
 
 class Command(BaseCommand):
     help = 'seed students table'
 
     def handle(self, *args, **options):
-        inserted = seed()
+        inserted = seed_students()
         print(inserted)
