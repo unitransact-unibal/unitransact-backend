@@ -3,7 +3,7 @@ from students.seeder import seed as seed_students
 
 
 class Command(BaseCommand):
-    help = 'seed students table'
+    help = 'seed database'
 
     def handle(self, *args, **options):
         inserted = seed_students()
