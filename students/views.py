@@ -10,6 +10,6 @@ class ListStudent(generics.ListAPIView):
     serializer_class = StudentSerializer
 
 
-class DetailStudent(generics.RetrieveAPIView):
+class DetailStudent(generics.RetrieveUpdateDestroyAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
