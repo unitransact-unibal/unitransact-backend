@@ -5,7 +5,7 @@ from .models import Student
 def seed(count):
     seeder = Seed.seeder()
     seeder.add_entity(Student, count, {
-        "admission_number": lambda x: seeder.faker.random_digit_not_null(),
+        "admission_number": lambda x: seeder.faker.random_int(min=1000, max=9999),
         "telephone": lambda x: seeder.faker.phone_number(),
     })
 
