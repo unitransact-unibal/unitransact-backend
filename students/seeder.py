@@ -2,11 +2,11 @@ from django_seed import Seed
 from .models import Student
 
 
-def seed():
+def seed(count):
     seeder = Seed.seeder()
-    seeder.add_entity(Student, 15, {
-        "admission_number": seeder.faker.random_digit_not_null(),
-        "address": lambda: seeder.faker.address(),
+    seeder.add_entity(Student, count, {
+        "admission_number": lambda x: seeder.faker.random_digit_not_null(),
+        "telephone": lambda x: seeder.faker.phone_number(),
     })
 
     inserted_pks = seeder.execute()
