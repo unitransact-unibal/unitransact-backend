@@ -1,7 +1,6 @@
 from django_seed import Seed
 
-from schools.models import School
-from .models import Student
+from .models import School
 from django.contrib.auth import get_user_model
 
 
@@ -20,17 +19,8 @@ def seed(count):
     users = get_user_model().objects.values_list('id', flat=True)
     users = list(users)
 
-    schools = School.objects.values_list('user_id', flat=True)
-    schools = list(schools)
-
-    to_remove = schools
-    for item in to_remove:
-        i = users.index(item)
-        users.pop(i)
-
-    seeder.add_entity(Student, count, {
-        "admission_number": lambda x: seeder.faker.random_int(min=1000, max=9999),
-        "telephone": lambda x: seeder.faker.phone_number(),
+    seeder.add_entity(School, count, {
+        "location": lambda x: seeder.faker.city(),
         'user_id': lambda x: gen_user_id(seeder, users)
     })
 
