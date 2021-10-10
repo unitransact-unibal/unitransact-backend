@@ -42,6 +42,7 @@ urlpatterns = [
 
     # apps
     path('api/v1/students/', include('students.urls')),
+    path('api/v1/parents/', include('parents.urls')),
 
     # docs
     path('swagger/', schema_view.with_ui(

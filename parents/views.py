@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from rest_framework import viewsets, permissions
 
-# Create your views here.
+from .models import Parent
+from .serializer import ParentSerializer
+
+
+class ParentViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.IsAuthenticated,)
+    queryset = Parent.objects.all()
+    serializer_class = ParentSerializer
