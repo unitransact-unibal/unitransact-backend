@@ -43,6 +43,7 @@ urlpatterns = [
     # apps
     path('api/v1/students/', include('students.urls')),
     path('api/v1/parents/', include('parents.urls')),
+    path('api/v1/schools/', include('schools.urls')),
 
     # docs
     path('swagger/', schema_view.with_ui(
