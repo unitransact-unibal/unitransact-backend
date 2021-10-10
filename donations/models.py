@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 
 
-class DonationsWalletTransactions(models.Model):
+class DonationsWalletTransaction(models.Model):
     DEBIT = 'db'
     CREDIT = 'cr'
     TYPE_CHOICES = [
