@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration',
 
     # others
+    'drf_yasg',
     'django_seed',
 
     # project apps
