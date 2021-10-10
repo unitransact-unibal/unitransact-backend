@@ -2,7 +2,7 @@ from django_seed import Seed
 
 from parents.models import Parent
 from schools.models import School
-from .models import Student, StudentParent
+from .models import Student, StudentParent, StudentWalletTransaction
 from django.contrib.auth import get_user_model
 
 
@@ -83,6 +83,45 @@ class StudentParentSeeder():
             'parent_id': lambda x: self.gen_parent(seeder),
             # Use the previously selected student_parent combination here too
             'student_id': lambda x: self.gen_student(),
+        })
+
+        inserted_pks = seeder.execute()
+        return inserted_pks
+
+
+class StudentWalletTransactionSeeder:
+    def gen_user(self, seeder, user_ids):
+        # print(user_ids)
+        user_id = seeder.faker.random_elements(user_ids, length=1, unique=True)
+
+        user_id = user_id[0]
+        user = get_user_model().objects.get(id=user_id)
+
+        return user
+
+    def gen_student(self, seeder, student_ids):
+        student_id = seeder.faker.random_elements(
+            student_ids, length=1, unique=True)
+
+        student_id = student_id[0]
+        student = Student.objects.get(id=student_id)
+
+        return student
+
+    def seed(self, count):
+        seeder = Seed.seeder()
+
+        users = get_user_model().objects.values_list('id', flat=True)
+        users = list(users)
+
+        students = Student.objects.values_list('id', flat=True)
+        students = list(students)
+
+        seeder.add_entity(StudentWalletTransaction, count, {
+            'user_id': lambda x: self.gen_user(seeder, users),
+            'student_id': lambda x: self.gen_student(seeder, students),
+            'amount': lambda x: seeder.faker.random_int(min=500, max=5000, step=10),
+            'transaction_type': lambda x: seeder.faker.random_element(elements=('debit', 'credit'))
         })
 
         inserted_pks = seeder.execute()
