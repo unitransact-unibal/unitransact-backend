@@ -10,7 +10,7 @@ router.register(
 )
 router.register(
     'wallets/transactions', StudentWalletTransactionViewSet,
-    basename="students.transactions.wallets"
+    basename="students.wallets.transactions"
 )
 
 urlpatterns = router.urls
