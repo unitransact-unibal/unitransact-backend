@@ -5,7 +5,7 @@ from .views import StudentParentViewSet, StudentViewSet
 router = SimpleRouter()
 router.register('', StudentViewSet, basename="students")
 router.register(
-    'parents/', StudentParentViewSet,
+    'parents', StudentParentViewSet,
     basename="students.parents"
 )
 
