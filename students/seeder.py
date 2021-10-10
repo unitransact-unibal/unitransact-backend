@@ -121,7 +121,7 @@ class StudentWalletTransactionSeeder:
             'user_id': lambda x: self.gen_user(seeder, users),
             'student_id': lambda x: self.gen_student(seeder, students),
             'amount': lambda x: seeder.faker.random_int(min=500, max=5000, step=10),
-            'transaction_type': lambda x: seeder.faker.random_element(elements=('debit', 'credit'))
+            'transaction_type': lambda x: seeder.faker.random_element(elements=('db', 'cr'))
         })
 
         inserted_pks = seeder.execute()
