@@ -30,3 +30,29 @@ class StudentParent(models.Model):
     class Meta:
         unique_together = ('student_id', 'parent_id')
         db_table = 'students_parent'
+
+
+class StudentWalletTransaction(models.Model):
+    DEBIT = 'db'
+    CREDIT = 'cr'
+    TYPE_CHOICES = [
+        (DEBIT, 'debit'),
+        (CREDIT, 'credit'),
+    ]
+    amount = models.DecimalField(max_digits=9, decimal_places=2)
+    transaction_type = models.CharField(
+        max_length=10,
+        choices=TYPE_CHOICES,
+        default=DEBIT
+    )
+
+    # from any user
+    user_id = models.OneToOneField(
+        get_user_model(), on_delete=models.PROTECT)
+    # to any student
+    student_id = models.ForeignKey(Student, on_delete=models.PROTECT)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'students_wallet_transactions'
