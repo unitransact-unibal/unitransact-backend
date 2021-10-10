@@ -58,8 +58,10 @@ INSTALLED_APPS = [
     'django_seed',
 
     # project apps
-    'students',
     'seeder',
+
+    'students',
+    'parents',
 ]
 
 MIDDLEWARE = [
