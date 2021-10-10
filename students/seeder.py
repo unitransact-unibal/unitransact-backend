@@ -2,11 +2,12 @@ from django_seed import Seed
 
 from parents.models import Parent
 from schools.models import School
-from .models import Student
+from .models import Student, StudentParent
 from django.contrib.auth import get_user_model
 
 
 def gen_user_id(seeder, user_ids):
+    # print(user_ids)
     user_id = seeder.faker.random_elements(user_ids, length=1, unique=True)
 
     user_id = user_id[0]
@@ -15,7 +16,7 @@ def gen_user_id(seeder, user_ids):
     return user
 
 
-def seed(count):
+def seed_students(count):
     seeder = Seed.seeder()
 
     users = get_user_model().objects.values_list('id', flat=True)
@@ -39,28 +40,50 @@ def seed(count):
     return inserted_pks
 
 
-def seed_student_parents(count):
-    seeder = Seed.seeder()
+class StudentParentSeeder():
+    def __init__(self):
+        self.students_parents = []
+        self.student_parent = -1
 
-    students = Student.objects.values_list('id', flat=True)
-    students = list(students)
+    def gen_student(self):
+        student = Student.objects.get(id=self.student_parent[0])
+        return student
 
-    parents = Parent.objects.values_list('id', flat=True)
-    parents = list(parents)
+    def gen_parent(self, seeder):
+        self.student_parent = seeder.faker.random_elements(
+            self.students_parents, length=1, unique=True
+        )
+        self.student_parent = self.student_parent[0].split('-')
+        parent = Parent.objects.get(id=self.student_parent[1])
+        return parent
 
-    students_parents = []
-    for student in students:
-        for parent in parents:
-            students_parents.append('{}-{}'.format(student, parent))
+    def seed(self, count):
+        seeder = Seed.seeder()
 
-    student_parent = seeder.faker.random_elements(
-        students_parents, length=1, unique=True
-    )
-    student_parent = student_parent[0].split('-')
-    student = Student.objects.get(id=student_parent[0])
-    parent = Parent.objects.get(id=student_parent[1])
+        students = Student.objects.values_list('id', flat=True)
+        students = list(students)
 
-    seeder.add_entity(Parent, count, {
-        'student_id': lambda x: gen_user_id(seeder, student),
-        'parent_id': lambda x: gen_user_id(seeder, parent),
-    })
+        parents = Parent.objects.values_list('id', flat=True)
+        parents = list(parents)
+
+        for student in students:
+            for parent in parents:
+                self.students_parents.append('{}-{}'.format(student, parent))
+
+        student_parent = seeder.faker.random_elements(
+            self.students_parents, length=1, unique=True
+        )
+        student_parent = student_parent[0].split('-')
+        student = Student.objects.get(id=student_parent[0])
+        parent = Parent.objects.get(id=student_parent[1])
+
+        # django-seed sorts the fields in alphabetical order then seeds so...
+        seeder.add_entity(StudentParent, count, {
+            # Get a unique student_parent combination, and populate the parent
+            'parent_id': lambda x: self.gen_parent(seeder),
+            # Use the previously selected student_parent combination here too
+            'student_id': lambda x: self.gen_student(),
+        })
+
+        inserted_pks = seeder.execute()
+        return inserted_pks
