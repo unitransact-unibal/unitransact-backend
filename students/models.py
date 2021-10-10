@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
+from parents.models import Parent
+
 
 class Student(models.Model):
     admission_number = models.CharField(max_length=50)
@@ -17,3 +19,11 @@ class Student(models.Model):
 
     def __str__(self):
         return "{} - {}".format(self.school_id, self.admission_number)
+
+
+class Parent(models.Model):
+    student_id = models.ForeignKey(Student, on_delete=models.PROTECT)
+    parent_id = models.ForeignKey(Parent, on_delete=models.PROTECT)
+
+    class Meta:
+        unique_together = ('student_id', 'parent_id')
