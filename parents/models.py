@@ -1,11 +1,10 @@
 from django.db import models
 
 
-class Student(models.Model):
+class Parent(models.Model):
     national_id = models.CharField(max_length=50)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    school_id = models.PositiveIntegerField()
     telephone = models.CharField(max_length=30)
     address = models.CharField(max_length=200)
     country = models.CharField(max_length=30)
