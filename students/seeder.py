@@ -1,9 +1,9 @@
 from django_seed import Seed
+from django.contrib.auth import get_user_model
 
 from parents.models import Parent
 from schools.models import School
 from .models import Student, StudentParent, StudentWalletTransaction
-from django.contrib.auth import get_user_model
 
 
 def gen_user_id(seeder, user_ids):

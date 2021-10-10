@@ -4,6 +4,7 @@ from students.seeder import StudentParentSeeder, StudentWalletTransactionSeeder
 from parents.seeder import seed as seed_parents
 from users.seeder import seed as seed_users
 from schools.seeder import seed as seed_schools
+from donations.seeder import DonationsWalletTransactionSeeder
 
 
 class Command(BaseCommand):
@@ -27,5 +28,9 @@ class Command(BaseCommand):
         print(inserted)
 
         sd = StudentWalletTransactionSeeder()
+        inserted = sd.seed(30)
+        print(inserted)
+
+        sd = DonationsWalletTransactionSeeder()
         inserted = sd.seed(30)
         print(inserted)
