@@ -24,6 +24,8 @@ class Student(models.Model):
 class Parent(models.Model):
     student_id = models.ForeignKey(Student, on_delete=models.PROTECT)
     parent_id = models.ForeignKey(Parent, on_delete=models.PROTECT)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         unique_together = ('student_id', 'parent_id')

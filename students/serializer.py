@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Student
+from .models import Student, Parent
 
 
 class StudentSerializer(serializers.ModelSerializer):
@@ -15,6 +15,17 @@ class StudentSerializer(serializers.ModelSerializer):
             'country',
             'school_id',
             'user_id',
+            'created_at',
+            'updated_at',
+        )
+
+
+class ParentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Parent
+        fields = (
+            'student_id',
+            'parent_id',
             'created_at',
             'updated_at',
         )
