@@ -10,6 +10,7 @@ class SchoolSerializer(serializers.ModelSerializer):
             'name',
             'address',
             'location',
+            'country',
             'user_id',
             'created_at',
             'updated_at',
