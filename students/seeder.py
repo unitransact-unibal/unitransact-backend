@@ -1,5 +1,6 @@
 from django_seed import Seed
 
+from parents.models import Parent
 from schools.models import School
 from .models import Student
 from django.contrib.auth import get_user_model
@@ -36,3 +37,30 @@ def seed(count):
 
     inserted_pks = seeder.execute()
     return inserted_pks
+
+
+def seed_student_parents(count):
+    seeder = Seed.seeder()
+
+    students = Student.objects.values_list('id', flat=True)
+    students = list(students)
+
+    parents = Parent.objects.values_list('id', flat=True)
+    parents = list(parents)
+
+    students_parents = []
+    for student in students:
+        for parent in parents:
+            students_parents.append('{}-{}'.format(student, parent))
+
+    student_parent = seeder.faker.random_elements(
+        students_parents, length=1, unique=True
+    )
+    student_parent = student_parent[0].split('-')
+    student = Student.objects.get(id=student_parent[0])
+    parent = Parent.objects.get(id=student_parent[1])
+
+    seeder.add_entity(Parent, count, {
+        'student_id': lambda x: gen_user_id(seeder, student),
+        'parent_id': lambda x: gen_user_id(seeder, parent),
+    })

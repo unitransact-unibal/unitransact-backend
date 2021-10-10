@@ -21,7 +21,7 @@ class Student(models.Model):
         return "{} - {}".format(self.school_id, self.admission_number)
 
 
-class Parent(models.Model):
+class StudentParent(models.Model):
     student_id = models.ForeignKey(Student, on_delete=models.PROTECT)
     parent_id = models.ForeignKey(Parent, on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -29,3 +29,4 @@ class Parent(models.Model):
 
     class Meta:
         unique_together = ('student_id', 'parent_id')
+        db_table = 'students_parent'

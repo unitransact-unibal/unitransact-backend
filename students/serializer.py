@@ -20,7 +20,7 @@ class StudentSerializer(serializers.ModelSerializer):
         )
 
 
-class ParentSerializer(serializers.ModelSerializer):
+class StudentParentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Parent
         fields = (
