@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Student, StudentParent
+from .models import Student, StudentParent, StudentWalletTransaction
 
 
 class StudentSerializer(serializers.ModelSerializer):
@@ -26,6 +26,20 @@ class StudentParentSerializer(serializers.ModelSerializer):
         fields = (
             'student_id',
             'parent_id',
+            'created_at',
+            'updated_at',
+        )
+
+
+class StudentWalletTransactionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StudentWalletTransaction
+        fields = (
+            'id',
+            'user_id',
+            'student_id',
+            'amount',
+            'transaction_type',
             'created_at',
             'updated_at',
         )
