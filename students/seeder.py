@@ -21,7 +21,8 @@ def seed(count):
     seeder.add_entity(Student, count, {
         "admission_number": lambda x: seeder.faker.random_int(min=1000, max=9999),
         "telephone": lambda x: seeder.faker.phone_number(),
-        'user_id': lambda x: gen_user_id(seeder, users)})
+        'user_id': lambda x: gen_user_id(seeder, users)
+    })
 
     inserted_pks = seeder.execute()
     return inserted_pks
