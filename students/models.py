@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 
 class Student(models.Model):
@@ -11,6 +12,8 @@ class Student(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     school_id = models.PositiveIntegerField()
+    user_id = models.OneToOneField(
+        settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

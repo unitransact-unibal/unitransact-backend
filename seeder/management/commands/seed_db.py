@@ -7,7 +7,7 @@ class Command(BaseCommand):
     help = 'seed database'
 
     def handle(self, *args, **options):
-        inserted = seed_students(30)
+        inserted = seed_students(3)
         print(inserted)
 
         inserted = seed_parents(30)
