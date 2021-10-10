@@ -1,7 +1,7 @@
 from rest_framework import viewsets, permissions
 
-from .models import Student, StudentParent
-from .serializer import StudentParentSerializer, StudentSerializer
+from .models import Student, StudentParent, StudentWalletTransaction
+from .serializer import StudentParentSerializer, StudentSerializer, StudentWalletTransactionSerializer
 
 
 class StudentViewSet(viewsets.ModelViewSet):
@@ -14,3 +14,9 @@ class StudentParentViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated,)
     queryset = StudentParent.objects.all()
     serializer_class = StudentParentSerializer
+
+
+class StudentWalletTransactionViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.IsAuthenticated,)
+    queryset = StudentWalletTransaction.objects.all()
+    serializer_class = StudentWalletTransactionSerializer
