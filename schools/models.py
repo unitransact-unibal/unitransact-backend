@@ -6,6 +6,7 @@ class School(models.Model):
     name = models.CharField(max_length=50)
     address = models.CharField(max_length=200)
     location = models.CharField(max_length=200)
+    country = models.CharField(max_length=30)
     user_id = models.OneToOneField(
         get_user_model(), on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True)

@@ -8,8 +8,6 @@ class ParentSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'national_id',
-            'first_name',
-            'last_name',
             'telephone',
             'address',
             'country',

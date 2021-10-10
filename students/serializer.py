@@ -13,8 +13,6 @@ class StudentSerializer(serializers.ModelSerializer):
             'date_of_birth',
             'telephone',
             'country',
-            'first_name',
-            'last_name',
             'school_id',
             'user_id',
             'created_at',
