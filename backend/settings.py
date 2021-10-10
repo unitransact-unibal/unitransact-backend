@@ -43,10 +43,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # 3rd party
+    # auth
     'rest_framework',
     'rest_framework.authtoken',
+    'dj_rest_auth',
+
+    # others
     'django_seed',
 
+    # project apps
     'students',
     'seeder',
 ]
