@@ -11,6 +11,7 @@ class SchoolViewSet(FiltersMixin ,viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated,)
     queryset = School.objects.all()
     serializer_class = SchoolSerializer
+    lookup_field = "user_id"
 
     filter_backends = (filters.OrderingFilter,)
     filter_mappings = {
