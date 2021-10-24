@@ -5,5 +5,6 @@ django-cors-headers >= 3.10.0
 djangorestframework >= 3.12.4
 django-seed >= 0.3.1
 drf-yasg >= 1.20.0
+drf-url-filters >= 0.5.1
 python-dotenv >= 0.19.1
 psycopg2 >= 2.9.1

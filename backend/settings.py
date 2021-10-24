@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     # others
     'drf_yasg',
     'django_seed',
+    'filters',
 
     # project apps
     'seeder',
@@ -189,5 +190,6 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 
 SITE_ID = 1
