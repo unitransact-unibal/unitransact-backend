@@ -36,7 +36,7 @@ def seed_students(count):
     for item in to_remove:
         i = users.index(item)
         users.pop(i)
-    
+
     schools = School.objects.values_list('id', flat=True)
     schools = list(schools)
 
