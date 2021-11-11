@@ -24,6 +24,7 @@ class StudentParentSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudentParent
         fields = (
+            'id',
             'student_id',
             'parent_id',
             'created_at',
