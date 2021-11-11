@@ -8,6 +8,7 @@ class StudentViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated,)
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
+    lookup_field = "user_id"
 
 
 class StudentParentViewSet(viewsets.ModelViewSet):

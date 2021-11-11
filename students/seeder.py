@@ -33,6 +33,7 @@ def seed_students(count):
     seeder.add_entity(Student, count, {
         "admission_number": lambda x: seeder.faker.random_int(min=1000, max=9999),
         "telephone": lambda x: seeder.faker.phone_number(),
+        "country": lambda x: seeder.faker.country_code(),
         'user_id': lambda x: gen_user_id(seeder, users)
     })
 
