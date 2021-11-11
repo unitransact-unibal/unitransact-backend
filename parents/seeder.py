@@ -36,6 +36,7 @@ def seed(count):
     seeder.add_entity(Parent, count, {
         "national_id": lambda x: seeder.faker.random_int(min=100_000, max=999_999),
         "telephone": lambda x: seeder.faker.phone_number(),
+        "country": lambda x: seeder.faker.country_code(),
         'user_id': lambda x: gen_user_id(seeder, users)
     })
 

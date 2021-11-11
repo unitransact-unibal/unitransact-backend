@@ -21,6 +21,7 @@ def seed(count):
 
     seeder.add_entity(School, count, {
         "location": lambda x: seeder.faker.city(),
+        "country": lambda x: seeder.faker.country_code(),
         'user_id': lambda x: gen_user_id(seeder, users)
     })
 
