@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 
 from parents.models import Parent
+from schools.models import School
 
 
 class Student(models.Model):
@@ -11,7 +12,7 @@ class Student(models.Model):
     date_of_birth = models.DateField()
     telephone = models.CharField(max_length=30)
     country = models.CharField(max_length=30)
-    school_id = models.PositiveIntegerField()
+    school_id = models.ForeignKey(School, on_delete=models.PROTECT)
     user_id = models.OneToOneField(
         get_user_model(), on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True)

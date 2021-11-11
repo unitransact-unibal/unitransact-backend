@@ -15,6 +15,13 @@ def gen_user_id(seeder, user_ids):
 
     return user
 
+def gen_school_id(seeder, school_ids):
+    school_id = seeder.faker.random_elements(school_ids, length=1, unique=True)
+
+    school_id = school_id[0]
+    school = School.objects.get(id=school_id)
+
+    return school
 
 def seed_students(count):
     seeder = Seed.seeder()
@@ -29,11 +36,15 @@ def seed_students(count):
     for item in to_remove:
         i = users.index(item)
         users.pop(i)
+    
+    schools = School.objects.values_list('id', flat=True)
+    schools = list(schools)
 
     seeder.add_entity(Student, count, {
         "admission_number": lambda x: seeder.faker.random_int(min=1000, max=9999),
         "telephone": lambda x: seeder.faker.phone_number(),
         "country": lambda x: seeder.faker.country_code(),
+        "school_id": lambda x: gen_school_id(seeder, schools),
         'user_id': lambda x: gen_user_id(seeder, users)
     })
 
