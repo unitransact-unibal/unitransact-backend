@@ -17,6 +17,9 @@ class Student(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        unique_together = ('school_id', 'admission_number')
+
     def __str__(self):
         return "{} - {}".format(self.school_id, self.admission_number)
 
