@@ -1,4 +1,6 @@
 from rest_framework import serializers
+
+from parents.serializer import ParentSerializer
 from .models import Student, StudentParent, StudentWalletTransaction
 
 
@@ -21,6 +23,8 @@ class StudentSerializer(serializers.ModelSerializer):
 
 
 class StudentParentSerializer(serializers.ModelSerializer):
+    parent_id = ParentSerializer(many=False)
+
     class Meta:
         model = StudentParent
         fields = (
