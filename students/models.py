@@ -22,7 +22,7 @@ class Student(models.Model):
         unique_together = ('school_id', 'admission_number')
 
     def __str__(self):
-        return "{} - {}".format(self.school_id, self.admission_number)
+        return "{} - {}".format(self.school_id.id, self.admission_number)
 
 
 class StudentParent(models.Model):

@@ -28,8 +28,19 @@ class StudentSerializer(serializers.ModelSerializer):
 
 
 class StudentParentSerializer(serializers.ModelSerializer):
-    parent_id = ParentSerializer(many=False)
-    student_id = StudentSerializer(many=False)
+    # https://www.django-rest-framework.org/api-guide/relations/
+    #  parent_id = ParentSerializer(many=False)
+    parent_first_name = serializers.ReadOnlyField(
+        source='parent_id.user_id.first_name')
+    parent_last_name = serializers.ReadOnlyField(
+        source='parent_id.user_id.last_name')
+
+    #  student_id = StudentSerializer(many=False)
+    # https://stackoverflow.com/a/53769358/7450617
+    student_first_name = serializers.ReadOnlyField(
+        source='student_id.user_id.first_name')
+    student_last_name = serializers.ReadOnlyField(
+        source='student_id.user_id.last_name')
 
     class Meta:
         model = StudentParent
@@ -37,6 +48,10 @@ class StudentParentSerializer(serializers.ModelSerializer):
             'id',
             'student_id',
             'parent_id',
+            'parent_first_name',
+            'parent_last_name',
+            'student_first_name',
+            'student_last_name',
             'created_at',
             'updated_at',
         )
