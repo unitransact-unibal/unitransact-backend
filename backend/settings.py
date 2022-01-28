@@ -33,7 +33,7 @@ SECRET_KEY = 'django-insecure-o@1wl)^z^99y$p3k1d%$83(m&^bg1xd$hepyh3@jlbo6jjg3_3
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com', 'unitransact-frontend.vercel.app']
 
 
 # Application definition
