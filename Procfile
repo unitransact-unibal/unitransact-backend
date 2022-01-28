@@ -1,1 +1,1 @@
-"web: gunicorn project-actinium.wsgi" 
+"web: gunicorn backend.wsgi" 
