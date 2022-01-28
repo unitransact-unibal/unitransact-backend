@@ -201,7 +201,13 @@ AUTHENTICATION_BACKENDS = [
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 
-CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "https://unitransact-frontend.vercel.app/",
+    "https://unibal-backend.herokuapp.com",
+    "http://localhost:8080",
+    "http://127.0.0.1:9000",
+]
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_COOKIE_SECURE = True
